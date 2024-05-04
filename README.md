@@ -73,7 +73,7 @@ You can customize the game by modifying the following parameters in the source c
 
 ## Credits
 
-This Battleship game is developed by [Your Name].
+This Battleship game is developed by İbrahim TOSUN.
 
 ## License
 
