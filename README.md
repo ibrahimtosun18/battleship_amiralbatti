@@ -21,7 +21,7 @@ Battleship is a classic two-player guessing game where each player tries to sink
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/battleship.git
+    git clone git@github.com:ibrahimtosun18/battleship_amiralbatti.git
     ```
 
 2. Navigate to the project directory:
@@ -50,15 +50,18 @@ Battleship is a classic two-player guessing game where each player tries to sink
 
 ### Playing the Game
 
-1. Connect to the server using a TCP client (e.g., telnet) on port 8080.
+1. Connect to the server with
+   ```bash
+   ./battleship_client.c 127.0.0.1
+   ```
 
-2. The game will begin, and you will take turns making guesses by entering coordinates (e.g., "3 4").
+3. The game will begin, and you will take turns making guesses by entering coordinates (e.g., "3 4").
 
-3. The server will respond with feedback on your guess (hit or miss) and update the grid accordingly.
+4. The server will respond with feedback on your guess (hit or miss) and update the grid accordingly.
 
-4. Keep guessing until you sink all the ships or reach the maximum number of guesses.
+5. Keep guessing until you sink all the ships or reach the maximum number of guesses.
 
-5. The game will end, and the server will display the game over message.
+6. The game will end, and the server will display the game over message.
 
 ## Customization
 
