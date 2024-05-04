@@ -15,7 +15,7 @@ void error(const char *msg) {
 }
 
 int main(int argc, char *argv[]) {
-    int sockfd, portno, n;
+    int sockfd, n;
     struct sockaddr_in serv_addr;
     char buffer[BUFFER_SIZE];
 
@@ -29,18 +29,18 @@ int main(int argc, char *argv[]) {
         error("ERROR opening socket");
 
     memset(&serv_addr, 0, sizeof(serv_addr));
-    portno = PORT;
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(portno);
+    serv_addr.sin_port = htons(PORT);
     if (inet_pton(AF_INET, argv[1], &serv_addr.sin_addr) <= 0) 
         error("ERROR on inet_pton");
 
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
 
-    printf("Connected to server. Enter messages:\n");
+    printf("Connected to server. You can now make your guesses.\n");
+
     while (1) {
-        printf("Please enter the message: ");
+        printf("Enter your guess (format: x y): ");
         memset(buffer, 0, BUFFER_SIZE);
         fgets(buffer, BUFFER_SIZE, stdin);
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
         n = read(sockfd, buffer, BUFFER_SIZE - 1);
         if (n < 0) 
              error("ERROR reading from socket");
-        printf("%s\n", buffer);
+        printf("Server response: %s\n", buffer);
     }
 
     close(sockfd);
