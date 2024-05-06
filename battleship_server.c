@@ -11,6 +11,35 @@
 #define GRID_SIZE 10
 #define BUFFER_SIZE 1024
 #define MAX_GUESSES 30
+<<<<<<< HEAD
+=======
+
+typedef enum { HORIZONTAL, VERTICAL } Orientation;
+
+typedef struct {
+    int x;
+    int y;
+    int hits;  // To track hits on the ship
+    int size;
+    char *name;  // Name of the ship or commander
+    Orientation orientation;
+    bool isSunk;
+} Ship;
+
+char grid[GRID_SIZE][GRID_SIZE];
+Ship ships[3];  // Declare ships globally to track them easily
+int totalShips = 3;  // Total number of ships in the game
+void error(const char *msg);
+void initializeGrid();
+void displayGrid(bool showShips);
+bool canPlaceShip(int x, int y, int size, Orientation orientation);
+void placeShip(int x, int y, int size, Orientation orientation);
+void setupShips();
+bool allShipsSunk();
+bool processGuess(int x, int y, int *guessCount, char *response);
+bool isPartOfShip(int x, int y, Ship ship); // Declaration added here to ensure visibility
+int main();
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 
 typedef enum { HORIZONTAL, VERTICAL } Orientation;
 
@@ -44,7 +73,10 @@ void error(const char *msg) {
     exit(1);
 }
 
+<<<<<<< HEAD
 // Initialize the grid with water
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 void initializeGrid() {
     for (int i = 0; i < GRID_SIZE; i++) {
         for (int j = 0; j < GRID_SIZE; j++) {
@@ -53,7 +85,10 @@ void initializeGrid() {
     }
 }
 
+<<<<<<< HEAD
 // Display the grid with or without ships. If showShips is false, ships are hidden. 
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 void displayGrid(bool showShips) {
     printf("  ");
     for (int i = 0; i < GRID_SIZE; i++) {
@@ -74,7 +109,10 @@ void displayGrid(bool showShips) {
     }
 }
 
+<<<<<<< HEAD
 // Check if a ship can be placed at the given coordinates and orientation
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 bool canPlaceShip(int x, int y, int size, Orientation orientation) {
     if (orientation == HORIZONTAL) {
         for (int i = 0; i < size; i++) {
@@ -88,7 +126,10 @@ bool canPlaceShip(int x, int y, int size, Orientation orientation) {
     return true;
 }
 
+<<<<<<< HEAD
 // Place a ship at the given coordinates and orientation
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 void placeShip(int x, int y, int size, Orientation orientation) {
     for (int i = 0; i < size; i++) {
         if (orientation == HORIZONTAL) {
@@ -99,7 +140,10 @@ void placeShip(int x, int y, int size, Orientation orientation) {
     }
 }
 
+<<<<<<< HEAD
 // Randomly set up the ships on the grid
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 void setupShips() {
     srand(time(NULL));  // Seed the random number generator
     ships[0] = (Ship){rand() % GRID_SIZE, rand() % GRID_SIZE, 0, 5, "USS Missouri", HORIZONTAL, false};
@@ -115,10 +159,15 @@ void setupShips() {
         placeShip(ships[i].x, ships[i].y, ships[i].size, ships[i].orientation);
     }
 }
+<<<<<<< HEAD
 
 // Check if all ships are sunk. Updated to use the size of the ships array
 bool allShipsSunk() {
     for (int i = 0; i < sizeof(ships); i++) { // Update loop condition
+=======
+bool allShipsSunk() {
+    for (int i = 0; i < totalShips; i++) { // Update loop condition
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
         if (!ships[i].isSunk) {
             return false;
         }
@@ -126,7 +175,10 @@ bool allShipsSunk() {
     return true;
 }
 
+<<<<<<< HEAD
 // Process a guess from the client and update the game state
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 bool processGuess(int x, int y, int *guessCount, char *response) {
     if (grid[x][y] == 'S') {
         grid[x][y] = 'H'; // Hit
@@ -156,7 +208,10 @@ bool processGuess(int x, int y, int *guessCount, char *response) {
     return false;
 }
 
+<<<<<<< HEAD
 // Check if the given coordinates are part of the ship
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 bool isPartOfShip(int x, int y, Ship ship) {
     if (ship.orientation == HORIZONTAL) {
         return x == ship.x && y >= ship.y && y < ship.y + ship.size;
@@ -164,7 +219,10 @@ bool isPartOfShip(int x, int y, Ship ship) {
         return y == ship.y && x >= ship.x && x < ship.x + ship.size;
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2bda56ed4f1c1c603c8997f458834a133f75fd73
 int main() {
     int sockfd, newsockfd, portno;
     socklen_t clilen;
